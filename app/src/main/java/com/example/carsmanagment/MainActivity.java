@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.carList);
         recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new CarAdapter(listOfCars));
+        recyclerView.setAdapter(new CarAdapter(this, listOfCars));
 
     }
 
