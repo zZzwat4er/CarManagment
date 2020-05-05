@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Cars Managment</string>
+    <string name="add_button">ADD CAR</string>
+    <string name="car_name_field">Name:</string>
+    <string name="car_name_input">Enter Car Name</string>
+    <string name="car_details_field">Details:</string>
+    <string name="car_details_input">Enter Car Details</string>
+    <string name="delete_button">DELETE</string>
+    <string name="open_button">OPEN</string>
+</resources>
