@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.carsmanagment.Car;
 import com.example.carsmanagment.CarManagmentActivity;
 import com.example.carsmanagment.MainActivity;
 import com.example.carsmanagment.R;
@@ -20,9 +21,9 @@ import java.util.ArrayList;
 public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
     private static Context currentActivity;
-    String[] cars;
+    ArrayList<Car> cars;
 
-    public CarAdapter(Context currentActivity, String[] cars){
+    public CarAdapter(Context currentActivity, ArrayList<Car> cars){
         this.currentActivity = currentActivity;
         this.cars = cars;
     }
@@ -36,7 +37,6 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
                 public void onClick(View v) {
                     Intent intent = new Intent(currentActivity, CarManagmentActivity.class);
                     currentActivity.startActivity(intent);
-
                 }
             });
             textView = (TextView) itemView.getChildAt(0);
@@ -52,9 +52,9 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) { holder.textView.setText(cars[position]); }
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) { holder.textView.setText(cars.get(position).name); }
 
     @Override
-    public int getItemCount() { return cars.length; }
+    public int getItemCount() { return cars.size(); }
 
 }
