@@ -3,6 +3,9 @@ package com.example.carsmanagment.recyclerview;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,17 +20,17 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView textView;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull LinearLayout itemView) {
             super(itemView);
-            textView = (TextView)itemView;
+            textView = (TextView) itemView.getChildAt(0);
         }
     }
 
     @NonNull
     @Override
     public CarAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        TextView view = (TextView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_main, parent, false);
+        LinearLayout view = (LinearLayout) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row, parent, false);
         return new ViewHolder(view);
     }
 
