@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.carsmanagment.Car;
+
 import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
@@ -15,7 +17,8 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "Cars";
     private static final int DB_VER = 1;
     private static final String DB_TABLE = "Car";
-    public static final String DB_COLUMN = "CarName";
+    public static final String DB_COLUMN1 = "CarName";
+    public static final String DB_COLUMN2 = "CarDetail";
 
     public DbHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VER);
@@ -23,8 +26,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT %s TEXT NOT NULL",
-                DB_TABLE, DB_COLUMN);
+        String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT %s TEXT NOT NULL %s TEXT NOT NULL",
+                DB_TABLE, DB_COLUMN1, DB_COLUMN2);
         db.execSQL(query);
 
     }
@@ -36,26 +39,30 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertCar(String carName){
+    public void insertCar(Car car){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues value = new ContentValues();
-        value.put(DB_COLUMN, carName);
-        db.insertWithOnConflict(DB_COLUMN, null, value, SQLiteDatabase.CONFLICT_REPLACE);
+        ContentValues value1 = new ContentValues();
+        ContentValues value2 = new ContentValues();
+        value1.put(DB_COLUMN1, car.name);
+        value2.put(DB_COLUMN2, car.detail);
+        db.insertWithOnConflict(DB_COLUMN1, null, value1, SQLiteDatabase.CONFLICT_REPLACE);
+        db.insertWithOnConflict(DB_COLUMN2, null, value2, SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
     }
 
-    public void deleteCar(String carName){
+    public void deleteCar(Car car){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(DB_TABLE, DB_COLUMN + " = ?", new String[]{carName});
+        db.delete(DB_TABLE, DB_COLUMN1 + " = ?", new String[]{car.name});
+        db.delete(DB_TABLE, DB_COLUMN2 + " = ?", new String[]{car.detail});
         db.close();
     }
 
     public ArrayList<String> getCarsLIst(){
         ArrayList<String> cars = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(DB_TABLE, new String[]{DB_COLUMN},null,null,null,null,null);
+        Cursor cursor = db.query(DB_TABLE, new String[]{DB_COLUMN1},null,null,null,null,null);
         while(cursor.moveToNext()){
-            int index = cursor.getColumnIndex(DB_COLUMN);
+            int index = cursor.getColumnIndex(DB_COLUMN1);
             cars.add(cursor.getString(index));
         }
         cursor.close();

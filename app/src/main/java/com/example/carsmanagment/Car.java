@@ -17,7 +17,7 @@ public class Car {
 
     public Car(Bundle bundle){
         this.name = bundle.getString(BUNDLE_NAME);
-        this.name = bundle.getString(BUNDLE_NAME);
+        this.detail = bundle.getString(BUNDLE_DETAIL);
     }
 
     public Bundle get_bundle(){
