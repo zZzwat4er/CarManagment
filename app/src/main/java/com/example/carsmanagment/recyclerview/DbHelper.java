@@ -26,7 +26,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT %s TEXT NOT NULL %s TEXT NOT NULL",
+        String query = String.format("CREATE TABLE %s (ID INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT NOT NULL, %s TEXT NOT NULL);",
                 DB_TABLE, DB_COLUMN1, DB_COLUMN2);
         db.execSQL(query);
 
@@ -41,12 +41,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public void insertCar(Car car){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues value1 = new ContentValues();
-        ContentValues value2 = new ContentValues();
-        value1.put(DB_COLUMN1, car.name);
-        value2.put(DB_COLUMN2, car.detail);
-        db.insertWithOnConflict(DB_COLUMN1, null, value1, SQLiteDatabase.CONFLICT_REPLACE);
-        db.insertWithOnConflict(DB_COLUMN2, null, value2, SQLiteDatabase.CONFLICT_REPLACE);
+        ContentValues value = new ContentValues();
+        value.put(DB_COLUMN1, car.name);
+        value.put(DB_COLUMN2, car.detail);
+        db.insertWithOnConflict(DB_TABLE, null, value, SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
     }
 
@@ -57,13 +55,16 @@ public class DbHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<String> getCarsLIst(){
-        ArrayList<String> cars = new ArrayList<>();
+    public ArrayList<Car> getCarsLIst(){
+        ArrayList<Car> cars = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(DB_TABLE, new String[]{DB_COLUMN1},null,null,null,null,null);
+        Cursor cursor = db.query(DB_TABLE, new String[]{DB_COLUMN1, DB_COLUMN2},null,null,null,null,null);
         while(cursor.moveToNext()){
-            int index = cursor.getColumnIndex(DB_COLUMN1);
-            cars.add(cursor.getString(index));
+            int nameIndex = cursor.getColumnIndex(DB_COLUMN1);
+            int detailIndex = cursor.getColumnIndex(DB_COLUMN2);
+            String carName = cursor.getString(nameIndex);
+            String carDeatail = cursor.getString(detailIndex);
+            cars.add(new Car(carName, carDeatail));
         }
         cursor.close();
         db.close();
