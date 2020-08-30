@@ -50,6 +50,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public void deleteCar(Car car){
         SQLiteDatabase db = this.getWritableDatabase();
+        //todo: удаление по совподению обоих колонок
         db.delete(DB_TABLE, DB_COLUMN1 + " = ?", new String[]{car.name});
         db.delete(DB_TABLE, DB_COLUMN2 + " = ?", new String[]{car.detail});
         db.close();

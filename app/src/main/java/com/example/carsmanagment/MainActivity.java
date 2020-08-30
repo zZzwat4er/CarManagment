@@ -28,13 +28,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //region TODO: DELETE THIS SHIT AFTER DB FINISHED
-/*        listOfCars = new ArrayList<>();
-        listOfCars.add(new Car("First", "first detail"));
-        listOfCars.add(new Car("Second", "second detail"));
-        listOfCars.add(new Car("Third", "third detail"));*/
-        //endregion TODO: DELETE THIS SHIT AFTER DB FINISHED
-
         dbHelper = new DbHelper(this);
         //for(int i = 0; i < listOfCars.size(); i++) dbHelper.insertCar(listOfCars.get(i));
         recyclerView = (RecyclerView) findViewById(R.id.carList);

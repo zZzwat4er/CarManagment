@@ -7,11 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import com.example.carsmanagment.recyclerview.DbHelper;
+
 import static com.example.carsmanagment.MainActivity.MAIN_ACTIVITY_CAR_INFO;
 
 public class CarManagmentActivity extends AppCompatActivity {
 
     private Car currentCar;
+    private DbHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,11 +23,13 @@ public class CarManagmentActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         currentCar = new Car(intent.getExtras());
+        dbHelper = new DbHelper(this);
     }
 
     public void deleteButton(View view){
-        //todo:(deleteButton) realize deletion
+        //todo: исправить возможную ошибку
         Intent intent = new Intent(this, MainActivity.class);
+        dbHelper.deleteCar(currentCar);
         startActivity(intent);
     }
 
