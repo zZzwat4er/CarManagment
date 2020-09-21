@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">Cars Managment</string>
-    <string name="add_button">ADD CAR</string>
-    <string name="car_name_field">Name:</string>
-    <string name="car_name_input">Enter Car Name</string>
-    <string name="car_details_field">Details:</string>
-    <string name="car_details_input">Enter Car Details</string>
+    <string name="add_button">Добавить</string>
+    <string name="title">Псевдоним(необязательно)</string>
+    <string name="card_id_hint">Номер карты</string>
+    <string name="card_id_hint_repeat">номер карты еще раз</string>
     <string name="delete_button">DELETE</string>
     <string name="open_button">OPEN</string>
+    <string name="car_name">Name</string>>
+    <string name="card">Card:</string>>
+    <string name="paid_till">Оплачено до:</string>
+    <string name="pay">Доплатить</string>
+    <string name="Time5H">5 Часов</string>
+    <string name="Time7D">7 Дней</string>
+    <string name="Time3M">3 Месяца</string>
+    <string name="Time2Y">2 Года</string>
+    <string name="pay_it">Оплатить</string>
+
 </resources>

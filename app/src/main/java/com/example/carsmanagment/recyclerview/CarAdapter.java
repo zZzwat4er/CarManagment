@@ -30,7 +30,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView textView;
+        private TextView carName;
+        private TextView carDetail;
         private Car car;
         public ViewHolder(@NonNull LinearLayout itemView) {
             super(itemView);
@@ -43,7 +44,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
                     currentActivity.startActivity(intent);
                 }
             });
-            textView = (TextView) itemView.getChildAt(0);
+            carName = (TextView) itemView.getChildAt(0);
+            carDetail = (TextView) itemView.getChildAt(1);
         }
     }
 
@@ -58,7 +60,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.car = cars.get(position);
-        holder.textView.setText(cars.get(position).name);
+        holder.carName.setText(cars.get(position).name);
+        holder.carDetail.setText(cars.get(position).detail);
     }
 
     @Override

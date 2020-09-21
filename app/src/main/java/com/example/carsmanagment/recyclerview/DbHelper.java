@@ -40,6 +40,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void insertCar(Car car){
+        //todo: проверка уникальности detail
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues value = new ContentValues();
         value.put(DB_COLUMN1, car.name);
@@ -50,8 +51,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public void deleteCar(Car car){
         SQLiteDatabase db = this.getWritableDatabase();
-        //todo: удаление по совподению обоих колонок
-        db.delete(DB_TABLE, DB_COLUMN1 + " = ?", new String[]{car.name});
         db.delete(DB_TABLE, DB_COLUMN2 + " = ?", new String[]{car.detail});
         db.close();
     }
