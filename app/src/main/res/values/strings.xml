@@ -8,7 +8,7 @@
     <string name="open_button">OPEN</string>
     <string name="car_name">Name</string>>
     <string name="card">Card:</string>>
-    <string name="paid_till">Оплачено до:</string>
+    <string name="paid_till">Оплачено:</string>
     <string name="pay">Доплатить</string>
     <string name="Time5H">5 Часов</string>
     <string name="Time7D">7 Дней</string>
